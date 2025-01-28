@@ -142,83 +142,101 @@ const AddProduct = () => {
 
 export default AddProduct;
 */}
-import { useState } from "react";
 
-const AddProduct = () => {
-  const [formData, setFormData] = useState({
-    id: "",
-    name: "",
-    price: "",
-    description: "", // Description input
-    image: null as File | null, // Image file state
-  });
 
-  const [message, setMessage] = useState("");
 
-  // Handle image file change
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData({ ...formData, image: e.target.files[0] });
-    }
-  };
+// import { useState } from "react";
 
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+// const AddProduct = () => {
+//   const [formData, setFormData] = useState({
+//     id: "",
+//     name: "",
+//     price: "",
+//     description: "", // Description input
+//     image: null as File | null, // Image file state
+//   });
 
-    // Prepare FormData
-    const formDataObj = new FormData();
-    formDataObj.append("id", formData.id);
-    formDataObj.append("name", formData.name);
-    formDataObj.append("price", formData.price);
-    formDataObj.append("description", formData.description); // Include description
-    if (formData.image) formDataObj.append("image", formData.image); // Include image if present
+//   const [message, setMessage] = useState("");
 
-    // Send the data to the API endpoint
-    const res = await fetch("/api/products", {
-      method: "POST",
-      body: formDataObj,
-    });
+//   // Handle image file change
+//   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     if (e.target.files && e.target.files[0]) {
+//       setFormData({ ...formData, image: e.target.files[0] });
+//     }
+//   };
 
-    const result = await res.json();
-    setMessage(res.ok ? result.message : result.error);
+//   // Handle form submission
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
 
-    if (res.ok) {
-      setFormData({ id: "", name: "", price: "", description: "", image: null }); // Clear form on success
-    }
-  };
+//     // Prepare FormData
+//     const formDataObj = new FormData();
+//     formDataObj.append("id", formData.id);
+//     formDataObj.append("name", formData.name);
+//     formDataObj.append("price", formData.price);
+//     formDataObj.append("description", formData.description); // Include description
+//     if (formData.image) formDataObj.append("image", formData.image); // Include image if present
 
+//     // Send the data to the API endpoint
+//     const res = await fetch("/api/products", {
+//       method: "POST",
+//       body: formDataObj,
+//     });
+
+//     const result = await res.json();
+//     setMessage(res.ok ? result.message : result.error);
+
+//     if (res.ok) {
+//       setFormData({ id: "", name: "", price: "", description: "", image: null }); // Clear form on success
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit} className="p-4 max-w-md mx-auto space-y-4">
+//       {["id", "name", "price", "description"].map((field) => (
+//         <input
+//           key={field}
+//           type={field === "price" ? "number" : "text"}
+//           placeholder={`Product ${field}`}
+//           value={(formData as any)[field]}
+//           onChange={(e) =>
+//             setFormData({ ...formData, [field]: e.target.value })
+//           }
+//           className="w-full border rounded-lg p-2"
+//           required
+//         />
+//       ))}
+
+//       {/* Image input */}
+//       <input
+//         type="file"
+//         accept="image/*"
+//         onChange={handleFileChange}
+//         className="w-full border rounded-lg p-2"
+//         required
+//       />
+
+//       <button className="w-full bg-blue-600 text-white py-2 rounded-lg">
+//         Add Product
+//       </button>
+//       {message && <p className="text-center mt-2">{message}</p>}
+//     </form>
+//   );
+// };
+
+// export default AddProduct;
+
+
+
+
+
+
+
+function page() {
   return (
-    <form onSubmit={handleSubmit} className="p-4 max-w-md mx-auto space-y-4">
-      {["id", "name", "price", "description"].map((field) => (
-        <input
-          key={field}
-          type={field === "price" ? "number" : "text"}
-          placeholder={`Product ${field}`}
-          value={(formData as any)[field]}
-          onChange={(e) =>
-            setFormData({ ...formData, [field]: e.target.value })
-          }
-          className="w-full border rounded-lg p-2"
-          required
-        />
-      ))}
+    <div className='h-full flex justify-center items-center'><div>
+      <h1 className='text-center font-bold'>Hello Welcome To Layan ki API</h1></div></div>
+  )
+}
 
-      {/* Image input */}
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-        className="w-full border rounded-lg p-2"
-        required
-      />
-
-      <button className="w-full bg-blue-600 text-white py-2 rounded-lg">
-        Add Product
-      </button>
-      {message && <p className="text-center mt-2">{message}</p>}
-    </form>
-  );
-};
-
-export default AddProduct;
+export default page;
