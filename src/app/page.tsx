@@ -227,6 +227,7 @@ export default AddProduct;
 // export default AddProduct;
 
 
+import Link from "next/link";
 
 
 
@@ -234,8 +235,10 @@ export default AddProduct;
 
 function page() {
   return (
-    <div className='h-full flex justify-center items-center'><div>
-      <h1 className='text-center font-bold'>Hello Welcome To Layan ki API</h1></div></div>
+    <div className='h-[100vh] gap-6 flex flex-col justify-center items-center'><div>
+      <h1 className='text-center font-bold'>Hello Welcome To Layan ki API</h1></div>
+      <div>
+      <Link className="py-2 px-8 text-white bg-green-600" href="https://layan-ki-api.vercel.app/api/products">Get API</Link></div></div>
   )
 }
 
